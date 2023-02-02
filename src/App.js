@@ -1,21 +1,21 @@
+import Header from "./components/Header/Header.jsx"
+import ItemListContainers from "./components/ItemListContainers/ItemListContainers.jsx"
+import Layout from "./components/Layout/Layout.jsx";
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="App" style={{
+      backgroundColor:" #2f508b ",
+      height: "100vh"
+    }}>
+      <Layout  >
+      <Header />
+      <ItemListContainers usuario= "Fernando" apellido= "Masetto" edad= "28" />
+      <ItemListContainers usuario= "Gonzalo" apellido= "Masetto" edad= "23" />
+      </Layout>
+      
+    </div>   
   );
 }
 
