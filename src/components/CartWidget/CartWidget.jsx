@@ -1,21 +1,27 @@
+import { Link } from 'react-router-dom';
+import "./CartWidget.css"
 import { FaShoppingCart } from 'react-icons/fa';
 
 const CartWidget = () => {
 
-  let numeroDeCompra = 3
+  let numeroDeCompra = 8
 
   return (
-    <div style={{
-        display: "flex", 
-        width: "5%", 
-        alignItems: "flex-end"/* , 
-        backgroundColor: "burlywood" */
-    }}>
+    <Link to="/cart">
+      <div class="container-cart" >
      
-      <FaShoppingCart  /> 
-      <h2 style={ {color:" #2f508b "}}>{numeroDeCompra}</h2>
+      <FaShoppingCart 
+        style={{
+          fontSize: "2rem",
+          color: "#2f508b",
+        }}
+      /> 
+     
+      <div className="bubble-counter">
+          <span>{numeroDeCompra}</span>
+        </div>
     </div>
-    
+    </Link>
   )
 }
 

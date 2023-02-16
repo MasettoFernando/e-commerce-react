@@ -1,0 +1,13 @@
+ 
+.categories {
+
+    display: flex; 
+    width: 50%;
+    align-items: flex-end;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #2f508b !important;
+    font-size: 1.5rem;
+    font-weight: bold;
+    list-style: none !important;
+} 
