@@ -1,7 +1,7 @@
 import CartWidget from "../CartWidget/CartWidget"
 import Navbar from "../Navbar/Navbar"
 import Pokenjoy from "../../img/Pokenjoy.jpg"
-
+import { Link } from 'react-router-dom';
 
 const Header = ( ) => {
 
@@ -12,10 +12,13 @@ const Header = ( ) => {
                 height: "8vh", 
                 justifyContent: "space-between",
                 alignItems: "center", 
-                backgroundColor: "white"
+                backgroundColor: "white",
+                boxShadow: "10px 0px 10px 1px #2f508b",
             }}>
 
-            <img style={{ height: "7vh" }} src={ Pokenjoy } />
+            <Link to="/">
+                <img style={{ height: "7vh" }} src={ Pokenjoy } />
+            </Link>
             <Navbar />
             <CartWidget />
         </div>

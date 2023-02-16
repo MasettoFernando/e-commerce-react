@@ -5,6 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url(https://www.todofondos.net/wp-content/uploads/1920x1080-Pokemon-Wallpaper-Pikachu.jpg) ;
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 code {

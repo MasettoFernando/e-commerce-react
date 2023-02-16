@@ -1,20 +1,27 @@
+import "./Navbar.css";
+import ListNavbar from "../ListNavbar/ListNavbar";
+import { Link } from "react-router-dom";
+
+
 const Navbar = ( ) => {
 
     return (
-        <ul style={{
-            display: "flex", 
-            width: "50%", 
-            alignItems: "flex-end", 
-            justifyContent: "space-between",
-            listStyle: "none"/* ,
-            backgroundColor: "red" */
-        }} >
-            <li>Quienes somos</li>
-            <li>Cartas</li>
-            <li>Juguetes</li>
-            <li>Contacto</li>
+        <ul className="categories" >
+            
+            <Link  to="/">
+                <ListNavbar title="Todos" />
+            </Link>
+            <Link to="/category/card">
+                <ListNavbar title="Cartas" />
+            </Link>
+            <Link to="/category/peluche">
+                <ListNavbar title="Peluches" />
+            </Link>
+
+
         </ul>
     )
 }
 
 export default Navbar
+
