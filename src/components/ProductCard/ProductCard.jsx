@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const ProductCard = ( { element } ) => {
+const ProductCard = ({ element }) => {
   return (
     <Card className="containerCard" sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -29,13 +29,13 @@ const ProductCard = ( { element } ) => {
           color="primary"
           align="center"
         >
-          {element.name}
+          {element.title}
         </Typography>
         <Typography variant="body1" color="text.secondary" align="center">
           {element.description}
         </Typography>
         <Typography variant="body1" color="secondary" align="center">
-          ${element.price}.-
+          ${element.price}
         </Typography>
       </CardContent>
       <CardActions style={{ display: "flex", justifyContent: "center" }}>

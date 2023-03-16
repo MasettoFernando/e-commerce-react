@@ -7,6 +7,10 @@ import ItemListContainer from "./components/ItemListContainer/ItemListContainer.
 
 import Cart from "./components/Cart/Cart.jsx";
 
+import CartContextProvider from "./context/CartContext";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
+
 
 function App() {
   
@@ -14,6 +18,7 @@ function App() {
   return (
     <BrowserRouter>
 
+    <CartContextProvider>
       <Header />
 
       <Routes>
@@ -25,9 +30,12 @@ function App() {
 
         <Route path="/cart"  element={ <Cart/> } />
         
+        <Route path="/login" element={ <Login />} />
+        <Route path="/sign-up" element={ <Register /> } />
         <Route path="*" element= { <h2>404 NOT FOUND</h2> }/>
 
       </Routes>
+      </CartContextProvider>  
     </BrowserRouter>
   )
 }

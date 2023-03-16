@@ -1,32 +1,57 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from "react";
 
-import { products } from '../../productsMock'
+import ItemDetail from "../ItemDetail/ItemDetail.jsx";
 
-import { useParams } from 'react-router-dom'
+import { db } from "../../firebaseConfig";
+import { getDoc, collection, doc } from "firebase/firestore";
+
+import { useParams } from "react-router-dom";
+
+import { CartContext } from "../../context/CartContext";
+
+import Swal from "sweetalert2";
 
 const ItemDetailContainer = () => {
+  
+  const { addToCart, getQuantityById } = useContext(CartContext);
+  
 
-    const { id } = useParams()
+  const { id } = useParams();
 
-    const [product, setProduct] = useState({})
+  const [product, setProduct] = useState({});
 
+  useEffect(() => {
 
-    useEffect( ()=>{
+    const itemCollection = collection(db, "products");
+    const ref = doc(itemCollection, id);
 
-       let productSelected = products.find( prod => prod.id === Number(id) )
+    getDoc(ref)
+      .then((res) => {
+        setProduct({
+          ...res.data(),
+          id: res.id,
+        });
+      })
+      .catch((err) => console.log(err));
+  }, [id]);
+  
+  const quantity = getQuantityById(product.id);
 
-        setProduct( productSelected )
+  const onAdd = (cantidad) => {
+    const obj = {
+      ...product,
+      quantity: cantidad,
+    };
 
-    },[])
+    addToCart(obj);
+    
+    Swal.fire({
+      icon: "success",
+      title: "Se agrego su producto al carrito",
+    });
+  };
 
+  return <ItemDetail product={product} onAdd={onAdd} initial={quantity}/>;
+};
 
-  return (
-    <div style={{paddingBottom: "100px"}}>
-      <h1>{product.title}</h1>
-      <h2>{product.price}</h2>
-      
-    </div>
-  )
-}
-
-export default ItemDetailContainer
+export default ItemDetailContainer;

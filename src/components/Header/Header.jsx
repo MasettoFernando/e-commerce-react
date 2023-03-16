@@ -1,28 +1,28 @@
-import CartWidget from "../CartWidget/CartWidget"
-import Navbar from "../Navbar/Navbar"
-import Pokenjoy from "../../img/Pokenjoy.jpg"
-import { Link } from 'react-router-dom';
+import CartWidget from "../CartWidget/CartWidget";
+import Navbar from "../Navbar/Navbar";
+/* import Pokenjoy from "/POKEMON/LOGO/Pokenjoy.jpg"; */
+import { Link } from "react-router-dom";
 
-const Header = ( ) => {
+const Header = () => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        width: "100%",
+        height: "8vh",
+        justifyContent: "space-between",
+        alignItems: "center",
+        backgroundColor: "white",
+        boxShadow: "10px 0px 10px 1px #2f508b",
+      }}
+    >
+      <Link to="/">
+        <img style={{ height: "7vh" }} src={"/POKEMON/LOGO/Pokenjoy.jpg"} alt="nav img" />
+      </Link>
+      <Navbar />
+      <CartWidget />
+    </div>
+  );
+};
 
-    return (
-        <div style={{
-                display: "flex", 
-                width: "100%", 
-                height: "8vh", 
-                justifyContent: "space-between",
-                alignItems: "center", 
-                backgroundColor: "white",
-                boxShadow: "10px 0px 10px 1px #2f508b",
-            }}>
-
-            <Link to="/">
-                <img style={{ height: "7vh" }} src={ Pokenjoy } />
-            </Link>
-            <Navbar />
-            <CartWidget />
-        </div>
-    )
-}
-
-export default Header
+export default Header;
