@@ -1,9 +1,16 @@
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { products } from "../../productsMock";
 import ItemList from "../ItemList/ItemList";
-import "./ItemListContainer.css";
+import { PuffLoader } from "react-spinners";
+
+import { db } from "../../firebaseConfig";
+import { getDocs, collection, query, where } from "firebase/firestore";
+
+const styles = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 
 const ItemListContainer = () => {
   const { categoryName } = useParams();
@@ -11,28 +18,60 @@ const ItemListContainer = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const productsFiltered = products.filter(
-      (product) => product.category === categoryName
-    );
+    const ItemCollection = collection(db, "products");
 
-    const task = new Promise((resolve, reject) => {
-      resolve(categoryName ? productsFiltered : products);
+    if (categoryName) {
+      const q = query(ItemCollection, where("category", "==", categoryName));
 
-      // reject(errorMessage);
-    });
+      getDocs(q)
+        .then((res) => {
+          const products = res.docs.map((products) => {
+            return {
+              ...products.data(),
+              id: products.id,
+            };
+          });
 
-    task
-      .then((res) => {
-        setItems(res);
-      })
-      .catch((error) => {
-        console.log("aca se rechazo: ", error);
-      });
+          setItems(products);
+        })
+
+        .catch((err) => console.log("este es el error: " + err));
+    } else {
+      getDocs(ItemCollection)
+        .then((res) => {
+          const products = res.docs.map((products) => {
+            return {
+              ...products.data(),
+              id: products.id,
+            };
+          });
+
+          setItems(products);
+        })
+
+        .catch((err) => console.log("este es el error: " + err));
+    }
   }, [categoryName]);
+
+  console.log(items);
+  
+  const styleSpinner = { position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" };
 
   return (
     <div>
-      <ItemList items={items} />
+      {items.length < 1 ? (
+        <div style={styleSpinner}>
+          <PuffLoader 
+            color={"#477af0"}
+            cssOverride={styles}
+            size={80}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      ) : (
+        <ItemList items={items} />
+      )}
     </div>
   );
 };

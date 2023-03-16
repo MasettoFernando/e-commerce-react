@@ -11,3 +11,7 @@
     font-weight: bold;
     list-style: none !important;
 } 
+
+a:-webkit-any-link {
+    text-decoration: none;
+}
