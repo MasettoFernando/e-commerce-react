@@ -43,7 +43,7 @@ const ItemDetailContainer = () => {
       quantity: cantidad,
     };
 
-    addToCart(obj);
+    addToCart(obj, cantidad );
     
     Swal.fire({
       icon: "success",
