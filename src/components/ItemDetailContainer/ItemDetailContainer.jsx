@@ -36,7 +36,7 @@ const ItemDetailContainer = () => {
   }, [id]);
   
   const quantity = getQuantityById(product.id);
-
+  console.log('ItemDetailContainer.jsx quantity el product quantity es:', quantity)
   const onAdd = (cantidad) => {
     const obj = {
       ...product,

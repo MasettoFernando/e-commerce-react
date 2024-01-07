@@ -50,7 +50,8 @@ const CartContextProvider = ({ children }) => {
 
   const getQuantityById = (id) => {
     let product = cart.find(element => element.id === id);
-
+    console.log('CartContext.jsx getquantity el product es:', product)
+    console.log('CartContext.jsx getquantity el product?.quantity es:', product?.quantity)
     return product?.quantity;
   };
 
