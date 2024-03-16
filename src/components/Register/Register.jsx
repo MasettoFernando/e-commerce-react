@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import AuthForm from "../AuthForm/AuthForm";
 
 const Register = () => {
-  return (
-    <div>Register</div>
-  )
-}
+  return <AuthForm />;
+};
 
-export default Register
+export default Register;

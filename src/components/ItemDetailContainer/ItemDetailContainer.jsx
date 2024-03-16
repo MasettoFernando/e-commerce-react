@@ -36,7 +36,7 @@ const ItemDetailContainer = () => {
   }, [id]);
   
   const quantity = getQuantityById(product.id);
-
+  
   const onAdd = (cantidad) => {
     const obj = {
       ...product,

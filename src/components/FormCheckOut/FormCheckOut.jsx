@@ -1,5 +1,6 @@
-import { useState } from "react";
-
+import { useState,  } from "react";
+import { Button } from "@mui/material";
+import './FormCheckOut.css'
 import {
   serverTimestamp,
   addDoc,
@@ -9,8 +10,11 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 
-const FormCheckOut = ({ cart, total, clearCart, setOrderId }) => {
+const FormCheckOut = ({ cart, total, clearCart, setOrderId, tarjetaSeleccionada }) => {
   const [userInfo, setUserInfo] = useState({ email: "", phone: "" });
+
+  console.log('FormCheckOut valor de cart:',cart)
+  console.log('FormCheckOut valor de total:',total)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,17 +23,16 @@ const FormCheckOut = ({ cart, total, clearCart, setOrderId }) => {
       buyer: userInfo,
       items: cart,
       total: total,
+      tarjeta: tarjetaSeleccionada,
       date: serverTimestamp(),
     };
 
     const orderCollection = collection(db, "orders");
 
-    // ACA CREAMOS LA ORDEN DE COMPRA EN LA COLECCION ORDERS
     addDoc(orderCollection, order)
       .then((res) => setOrderId(res.id))
       .catch((err) => console.log(err));
 
-    // ACA DESCONTAMOS EL STOCK DE CADA PRODUCTO
 
     cart.map((product) =>
       updateDoc(doc(db, "products", product.id), {
@@ -37,12 +40,34 @@ const FormCheckOut = ({ cart, total, clearCart, setOrderId }) => {
       })
     );
 
+    setTimeout(() => {
+      console.log('Order object:', order);
+    }, 9000);
+    
+
     clearCart();
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="formCheckOut-container">
+      
+
+      <form  className="formCheckOut" onSubmit={handleSubmit}>
+      <div >
+        {cart.map((item) => {
+          return (
+            <div key={item.id} >
+              <div >
+                <span>{item.title} {item.category} Unidades: {item.quantity}</span>
+                <h3>${item.price}</h3>
+                
+              </div>
+            </div>
+            );
+        })}
+        <h3>Tarjeta: {tarjetaSeleccionada}</h3>
+        <h2>Total a pagar: ${total}</h2>
+      </div>
         <input
           type="text"
           placeholder="Ingrese su email"
@@ -55,7 +80,7 @@ const FormCheckOut = ({ cart, total, clearCart, setOrderId }) => {
           name="phone"
           onChange={(e) => setUserInfo({ ...userInfo, phone: e.target.value })}
         />
-        <button>Comprar</button>
+        <button variant="contained">Comprar</button>
       </form>
     </div>
   );

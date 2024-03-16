@@ -3,7 +3,9 @@ import ItemCount from "../ItemCount/ItemCount";
 import styles from "./ItemDetail.module.css";
 
 
-const ItemDetail = ({ product, onAdd, quantity }) => {
+const ItemDetail = ({ product, onAdd, quantity, initial }) => {
+
+  const cardQuantity = initial ?? 0
   return (
     <div className={styles.containerItemDetail}>
       <div className={styles.containerImage}>
@@ -22,7 +24,8 @@ const ItemDetail = ({ product, onAdd, quantity }) => {
           <span style={{ fontSize: "23px" }}>Precio:</span> ${product.price}
         </h2>
 
-        <ItemCount onAdd={onAdd} stock={product.stock} initial={quantity} />
+        
+        <ItemCount onAdd={onAdd} stock={product.stock} initial={quantity} cardQuantity={cardQuantity} />
       </div>
     </div>
   );

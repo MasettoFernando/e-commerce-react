@@ -5,14 +5,11 @@ const ItemList = ({ items }) => {
   return (
     <div
       style={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "space-evenly",
-        alignItems: "center",
-        minHeight: "90vh",
-        flexWrap: "wrap",
-        gap: "30px",
-        paddingTop: "30px"
+        
+        display: "grid", 
+        gridTemplateColumns: "repeat(4, 2fr)",
+        placeItems: "center"
+        
       }}
     >
       {items.map((element) => {

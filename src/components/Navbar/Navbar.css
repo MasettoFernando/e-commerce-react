@@ -1,6 +1,5 @@
  
-.categories {
-
+.categories { 
     display: flex; 
     width: 50%;
     align-items: flex-end;

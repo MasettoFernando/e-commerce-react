@@ -22,14 +22,10 @@ const CartContextProvider = ({ children }) => {
       });
 
       setCart(newCart);
-      setTimeout(() => {
-        console.log('if',cart)
-      }, 3000);
+      console.log('if',cart)
     } else {
       setCart([...cart, {...product, quantity}]);
-      setTimeout(() => {
-        console.log('else',[...cart, {...product, quantity}])
-      }, 3000);
+      console.log('else',[...cart, {...product, quantity}]) 
     }
   };
 
@@ -50,7 +46,6 @@ const CartContextProvider = ({ children }) => {
 
   const getQuantityById = (id) => {
     let product = cart.find(element => element.id === id);
-
     return product?.quantity;
   };
 

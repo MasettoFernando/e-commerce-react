@@ -1,6 +1,5 @@
 import CartWidget from "../CartWidget/CartWidget";
 import Navbar from "../Navbar/Navbar";
-/* import Pokenjoy from "/POKEMON/LOGO/Pokenjoy.jpg"; */
 import { Link } from "react-router-dom";
 
 const Header = () => {

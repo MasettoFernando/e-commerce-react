@@ -1,0 +1,20 @@
+.formCheckOut-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    margin: 0;
+
+}
+
+.formCheckOut{
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+    text-align: center;
+    background-color: white;
+    padding: 3%;
+    border-radius: 5px;
+    box-shadow: 2px 13px 39px #477af0;
+    opacity: 0.9;
+}
