@@ -16,7 +16,21 @@ const Cart = () => {
 
   const [buy, setBuy] = useState(false);
   const [orderId, setOrderId] = useState(null);
+  const [cupon, setCupon] = useState('');
+  const tarjetasDisponibles = ['Visa', 'MasterCard', 'American Express'];
+  const [tarjetaSeleccionada, setTarjetaSeleccionada] = useState(null);
 
+  const handleRadioChange = (tarjeta) => {
+    setTarjetaSeleccionada(tarjeta);
+  };
+
+  const handleInputChange = (event) => {
+    setCupon(event.target.value);
+  };
+
+  const handleApplyCupon = () => {
+    setCupon('');
+  };
   const clearCartAlert = () => {
     Swal.fire({
       title: "Seguro quieres eliminar el carrito?",
@@ -62,7 +76,7 @@ const Cart = () => {
                       variant="contained"
                       onClick={() => deleteProductById(item.id)}
                     >
-                      Quitar
+                      Eliminar
                     </Button>
                   </div>
                 );
@@ -73,7 +87,40 @@ const Cart = () => {
           <div className="cart-info">
             <h2>Descripcion del carrito:</h2>
             <h3>Cantidad de productos: {getTotalItems()}</h3>
-            <h3>Precio total: {total > 0 ? total : "No hay items"}</h3>
+            <div className="cupon">
+              <label>
+                <h3>¿Tiene un cupón de descuento?</h3>
+                <input
+                  type="text"
+                  value={cupon}
+                  onChange={handleInputChange}
+                  placeholder="Ingrese su cupón aquí"
+                  className="custom-input"
+                />
+              </label>
+              <Button variant="contained" onClick={handleApplyCupon}>
+                Aplicar
+              </Button>
+            </div>
+            <div>
+              <h3>Seleccione su tarjeta:</h3>
+              <div className="tarjeta-checkboxes">
+                {tarjetasDisponibles.map((tarjeta) => (
+                  <div key={tarjeta} className="tarjeta-checkbox">
+                    <input
+                      type="radio"
+                      id={tarjeta}
+                      name="tarjeta"
+                      value={tarjeta}
+                      checked={tarjetaSeleccionada === tarjeta}
+                      onChange={() => handleRadioChange(tarjeta)}
+                    />
+                    <label htmlFor={tarjeta}>{tarjeta}</label>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <h1>Precio total: {total > 0 ? ('$' + total) : "No hay items"}</h1>
             
 
             {cart.length > 0 && (
@@ -86,8 +133,6 @@ const Cart = () => {
                 </Button>
               </div>
             )}
-
-            <h1>El total del carrito es ${total}</h1>
           </div>
         </div>
       ) : (
@@ -96,6 +141,7 @@ const Cart = () => {
           total={total}
           clearCart={clearCart}
           setOrderId={setOrderId}
+          tarjetaSeleccionada={tarjetaSeleccionada}
         />
       )}
     </div>

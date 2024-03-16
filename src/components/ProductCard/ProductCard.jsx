@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import "./ProductCard.css";
 
@@ -11,8 +11,12 @@ import {
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const ProductCard = ({ element }) => {
+
+  const { user } = useContext(UserContext);
+
   return (
     <Card className="containerCard" sx={{ maxWidth: 345 }}>
       <CardMedia

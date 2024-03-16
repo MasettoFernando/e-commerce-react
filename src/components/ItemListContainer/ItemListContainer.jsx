@@ -31,7 +31,6 @@ const ItemListContainer = () => {
               id: products.id,
             };
           });
-
           setItems(products);
         })
 
@@ -45,8 +44,9 @@ const ItemListContainer = () => {
               id: products.id,
             };
           });
-
+          console.log('entro en else y espera 5000ms')
           setItems(products);
+          
         })
 
         .catch((err) => console.log("este es el error: " + err));

@@ -1,0 +1,44 @@
+.AuthFormContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45vh;
+  }
+  
+  .AuthForm {
+    width: 400px;
+    margin-top: 10%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 2px 13px 39px #477af0;
+  }
+
+  .AuthForm form .MuiFormControl-root {
+    margin-bottom: 10px; 
+  }
+  
+  .AuthForm button{
+    margin-left: auto;
+  }
+
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .AuthForm p {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .AuthForm p a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .AuthForm p a:hover {
+    text-decoration: underline;
+  }

@@ -1,4 +1,9 @@
 
 .css-1ri6ub7-MuiPaper-root-MuiCard-root{
     box-shadow: 5px 2px 9px 0px #2f508b !important;
+    margin: 5%;
+    position: static !important;
+}
+.css-j5ap6c-MuiButtonBase-root-MuiButton-root {
+    position: static !important; 
 }

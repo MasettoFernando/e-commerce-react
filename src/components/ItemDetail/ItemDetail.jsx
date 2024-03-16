@@ -4,8 +4,6 @@ import styles from "./ItemDetail.module.css";
 
 
 const ItemDetail = ({ product, onAdd, quantity, initial }) => {
-  console.log('ItemDetail.jsx quantity el product quantity es:', quantity)
-  console.log('ItemDetail.jsx quantity el product quantity initial es:', initial)
 
   const cardQuantity = initial ?? 0
   return (
